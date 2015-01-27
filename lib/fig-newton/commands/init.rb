@@ -1,3 +1,5 @@
+require "fig-newton/config"
+
 module FigNewton
   module Commands
     class Init
@@ -15,10 +17,11 @@ module FigNewton
 
       def generate_yaml
         @yaml = unindent(<<-YAML)
-          - #{@stack_name}:
-            apps:
-              - example-app:
-                repo: "behance/example"
+          name: #{@stack_name}
+          apps:
+            example-app:
+              repo: "behance/example"
+              dir: "xmp"
         YAML
       end
 
@@ -32,7 +35,7 @@ module FigNewton
       end
 
       def stack_filename
-        "#{@stack_name}.yml"
+        @filename ||= FigNewton::Config.filepath_from_stack(@stack_name)
       end
 
       def unindent(s)
