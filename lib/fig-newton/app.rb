@@ -23,7 +23,7 @@ module FigNewton
     def down(parent_directory)
       source_directory = full_dir(parent_directory)
 
-      puts "-- Bringing up #{@name} in '#{source_directory}'"
+      puts "-- Bringing down #{@name} in '#{source_directory}'"
       `cd #{source_directory} && fig kill`
     end
 
