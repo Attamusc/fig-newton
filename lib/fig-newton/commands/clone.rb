@@ -10,9 +10,7 @@ module FigNewton
       end
 
       def run(parent_directory)
-        config.apps.each do |app|
-          app.clone(parent_directory)
-        end
+        config.apps.each { |app| app.clone(parent_directory) }
       end
 
       private

@@ -19,6 +19,8 @@ module FigNewton
         @yaml = unindent(<<-YAML)
           name: #{@stack_name}
           apps:
+            tugboat:
+              repo: "behance/tugboat"
             example-app:
               repo: "behance/example"
               dir: "xmp"

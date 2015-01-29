@@ -13,6 +13,20 @@ module FigNewton
       `git clone #{full_repo} #{clone_directory} &>/dev/null`
     end
 
+    def up(parent_directory)
+      source_directory = full_dir(parent_directory)
+
+      puts "-- Bringing up #{@name} in '#{source_directory}'"
+      `cd #{source_directory} && fig up -d`
+    end
+
+    def down(parent_directory)
+      source_directory = full_dir(parent_directory)
+
+      puts "-- Bringing up #{@name} in '#{source_directory}'"
+      `cd #{source_directory} && fig kill`
+    end
+
     private
 
     attr_accessor :name, :repo, :dir

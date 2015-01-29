@@ -23,17 +23,23 @@ module FigNewton
     end
 
     desc "up STACK_NAME", "Bring up all the applications defined for the given stack. Equivalent to running fig up in each application directory."
+    option :parent_directory, type: :string,
+                              default: ".",
+                              desc: "The parent directory of the cloned repositories"
     def up(stack_name)
       require "fig-newton/commands/up"
-      command = FigNewton::Commands::Clone.new(stack_name)
-      command.run
+      command = FigNewton::Commands::Up.new(stack_name)
+      command.run(options[:parent_directory])
     end
 
     desc "down STACK_NAME", "Bring down all the applications defined for the given stack. Equivalent to running fig down in each application directory."
+    option :parent_directory, type: :string,
+                              default: ".",
+                              desc: "The parent directory of the cloned repositories"
     def down(stack_name)
       require "fig-newton/commands/down"
       command = FigNewton::Commands::Down.new(stack_name)
-      command.run
+      command.run(options[:parent_directory])
     end
   end
 end
