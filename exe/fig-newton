@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "fig-newton"
+
+begin
+  require "fig-newton/cli"
+  FigNewton::CLI.start
+rescue Interrupt
+  puts "\nQuitting..."
+  exit 1
+rescue SystemExit => e
+  exit e.status
+end
