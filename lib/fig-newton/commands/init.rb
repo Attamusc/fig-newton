@@ -3,8 +3,9 @@ require "fig-newton/config"
 module FigNewton
   module Commands
     class Init
-      def initialize(stack_name)
+      def initialize(stack_name, config_dir)
         @stack_name = stack_name
+        @config_dir = config_dir
         @yaml = nil
       end
 
@@ -37,7 +38,7 @@ module FigNewton
       end
 
       def stack_filename
-        @filename ||= FigNewton::Config.filepath_from_stack(@stack_name)
+        @filename ||= FigNewton::Config.filepath_from_stack(File.join(@config_dir, @stack_name))
       end
 
       def unindent(s)
