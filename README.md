@@ -33,3 +33,7 @@ Bring up all the applications defined for the given stack. Equivalent to running
 ### `down STACK_NAME`
 
 Bring down all the applications defined for the given stack. Equivalent to running `fig down` in each application directory.
+
+### `pull STACK_NAME`
+
+Pull the latest code for all the repos defined for the given stack. Equivalent to running `git pull` in each application directory.

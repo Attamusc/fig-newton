@@ -24,8 +24,10 @@ module FigNewton
     end
 
     def apps
-      @apps ||= data["apps"].map do |name, config|
-        FigNewton::App.new(name, config)
+      @apps ||= data["apps"].each_with_object({}) do |app, apps|
+        name, config = app.flatten
+        apps[name] = FigNewton::App.new(name, config)
+        apps
       end
     end
 

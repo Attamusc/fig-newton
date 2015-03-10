@@ -2,14 +2,19 @@ require "fig-newton/config"
 
 module FigNewton
   module Commands
-    class Clone
-      def initialize(stack_name, config_dir)
+    class Pull
+      def initialize(stack_name, app, config_dir)
         @stack_name = stack_name
+        @app = app
         @config = FigNewton::Config.from_file(File.join(config_dir, @stack_name))
       end
 
       def run(parent_directory)
-        config.apps.each { |_, app| app.clone(parent_directory) }
+        if @app
+          config.apps[@app].pull(parent_directory)
+        else
+          config.apps.each { |_, app| app.pull(parent_directory) }
+        end
       end
 
       private

@@ -9,7 +9,7 @@ module FigNewton
       end
 
       def run(parent_directory)
-        config.apps.each { |app| app.up(parent_directory) }
+        config.apps.each { |_, app| app.up(parent_directory) }
       end
 
       private
