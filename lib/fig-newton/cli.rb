@@ -50,5 +50,16 @@ module FigNewton
       command = FigNewton::Commands::Down.new(stack_name, options[:conf])
       command.run(options[:parent_directory])
     end
+
+    desc "pull STACK_NAME APP_NAME", "Pull the latest code for all (or one) of the repos defined for the given stack"
+    option :parent_directory, type: :string,
+                              default: ".",
+                              desc: "The parent directory of the cloned repositories",
+                              aliases: ["p"]
+    def pull(stack_name, app = nil)
+      require "fig-newton/commands/pull"
+      command = FigNewton::Commands::Pull.new(stack_name, app, options[:conf])
+      command.run(options[:parent_directory])
+    end
   end
 end

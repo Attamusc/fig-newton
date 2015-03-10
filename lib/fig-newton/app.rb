@@ -13,6 +13,13 @@ module FigNewton
       `git clone #{full_repo} #{clone_directory} &>/dev/null`
     end
 
+    def pull(parent_directory = ".")
+      source_directory = full_dir(parent_directory)
+
+      puts "-- Pulling latest upstream in '#{source_directory}'"
+      `cd #{source_directory} && git pull`
+    end
+
     def up(parent_directory)
       source_directory = full_dir(parent_directory)
 
