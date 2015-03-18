@@ -20,6 +20,15 @@ module FigNewton
       `cd #{source_directory} && git pull`
     end
 
+    def clean(parent_directory = ".")
+      source_directory = full_dir(parent_directory)
+
+      down(parent_directory)
+
+      puts "-- Cleaning killed containers in '#{source_directory}'"
+      `cd #{source_directory} && fig rm --force`
+    end
+
     def up(parent_directory)
       source_directory = full_dir(parent_directory)
 
