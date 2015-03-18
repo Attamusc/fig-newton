@@ -11,7 +11,7 @@ module FigNewton
     option :force, type: :boolean,
                    default: false,
                    desc: "Overwrite file if it already exists",
-                   aliaes: ["f"]
+                   aliases: ["f"]
     def init(stack_name)
       require "fig-newton/commands/init"
       command = FigNewton::Commands::Init.new(stack_name, options[:conf])
@@ -59,6 +59,17 @@ module FigNewton
     def pull(stack_name, app = nil)
       require "fig-newton/commands/pull"
       command = FigNewton::Commands::Pull.new(stack_name, app, options[:conf])
+      command.run(options[:parent_directory])
+    end
+
+    desc "clean STACK_NAME APP_NAME", "Bring down all (or one) of the applications defined for the given stack. Equivalent to running fig rm in each application directory."
+    option :parent_directory, type: :string,
+                              default: ".",
+                              desc: "The parent directory of the cloned repositories",
+                              aliases: ["p"]
+    def clean(stack_name, app = nil)
+      require "fig-newton/commands/clean"
+      command = FigNewton::Commands::Clean.new(stack_name, app, options[:conf])
       command.run(options[:parent_directory])
     end
   end
