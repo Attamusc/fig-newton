@@ -38,7 +38,7 @@ module FigNewton
       end
 
       def stack_filename
-        @filename ||= FigNewton::Config.filepath_from_stack(File.join(@config_dir, @stack_name))
+        @filename ||= FigNewton::Config.filepath_from_stack(@config_dir, @stack_name)
       end
 
       def unindent(s)

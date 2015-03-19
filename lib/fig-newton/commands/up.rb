@@ -5,7 +5,7 @@ module FigNewton
     class Up
       def initialize(stack_name, config_dir)
         @stack_name = stack_name
-        @config = FigNewton::Config.from_file(File.join(config_dir, @stack_name))
+        @config = FigNewton::Config.from_file(config_dir, @stack_name)
       end
 
       def run(parent_directory)
